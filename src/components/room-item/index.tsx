@@ -11,7 +11,6 @@ interface IProps {
 
 const RoomItem: FC<IProps> = (props) => {
   const { itemData, itemWidth = '25%' } = props
-  console.log(itemData?.verify_info)
   return (
     <RoomItemWrapper
       verifyColor={itemData?.verify_info?.text_color || '#39576a'}
