@@ -34,7 +34,11 @@ export const PaginationWrapper = styled.div`
     }
 
     .desc {
-      margin-top: 16px;
+      margin: 16px 0 32px 0;
+    }
+
+    .other {
+      color: #717171;
     }
   }
 `

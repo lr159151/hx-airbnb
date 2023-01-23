@@ -41,6 +41,7 @@ const EntirePagination: FC<IProps> = () => {
           <div className="desc">
             第 {startCount} – {endCount} 个房源，共超过 {totalCount} 个
           </div>
+          <div className="other">包含额外附加费用及适用税费。</div>
         </div>
       )}
     </PaginationWrapper>
