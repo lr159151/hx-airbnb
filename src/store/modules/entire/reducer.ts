@@ -8,7 +8,7 @@ type InitialState = {
 }
 
 const initialState: InitialState = {
-  currentPage: 1, // 当前页码
+  currentPage: 0, // 当前页码
   roomList: [], // 房间列表
   totalCount: 0 // 房间总数
 }
