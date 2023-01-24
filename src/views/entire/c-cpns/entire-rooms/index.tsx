@@ -19,7 +19,7 @@ const EntireRooms: FC<IProps> = () => {
   )
   return (
     <RoomsWrapper>
-      <h2 className="title">{totalCount}多处住宿</h2>
+      {roomList!.length > 0 && <h2 className="title">{totalCount}多处住宿</h2>}
       <div className="list">
         {roomList!.map((item) => (
           <RoomItem itemData={item} itemWidth="20%" key={item._id} />
