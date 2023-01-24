@@ -63,6 +63,48 @@ const RoomItem: FC<IProps> = (props) => {
     }
   }
 
+  const pictureElement = (
+    <div className="room-item-cover">
+      <img src={itemData.picture_url} />
+    </div>
+  )
+
+  const sliderElement = (
+    <div className="slider">
+      <div className="control">
+        <div className="btn prev" onClick={() => controlClickHandle(false)}>
+          <IconArrowLeft width={24} height={24} />
+        </div>
+        <div className="btn next" onClick={() => controlClickHandle()}>
+          <IconArrowRight width={24} height={24} />
+        </div>
+      </div>
+      <div className="indicator">
+        <Indicator selectIndex={selectIndex}>
+          {itemData.picture_urls?.map((item: string, index: number) => (
+            <div className="item" key={item}>
+              <span
+                className={classNames('dot', {
+                  more:
+                    index > selectIndex + dotMore.current ||
+                    index < selectIndex - dotMore.current,
+                  active: selectIndex === index
+                })}
+              ></span>
+            </div>
+          ))}
+        </Indicator>
+      </div>
+      <Carousel dots={false} ref={sliderRef}>
+        {itemData?.picture_urls?.map((item: string) => (
+          <div className="room-item-cover" key={item}>
+            <img src={item} />
+          </div>
+        ))}
+      </Carousel>
+    </div>
+  )
+
   return (
     <RoomItemWrapper
       verifyColor={itemData?.verify_info?.text_color || '#39576a'}
@@ -70,39 +112,7 @@ const RoomItem: FC<IProps> = (props) => {
       itemWidth={itemWidth}
     >
       <div className="inner">
-        <div className="slider">
-          <div className="control">
-            <div className="btn prev" onClick={() => controlClickHandle(false)}>
-              <IconArrowLeft width={24} height={24} />
-            </div>
-            <div className="btn next" onClick={() => controlClickHandle()}>
-              <IconArrowRight width={24} height={24} />
-            </div>
-          </div>
-          <div className="indicator">
-            <Indicator selectIndex={selectIndex}>
-              {itemData.picture_urls?.map((item: string, index: number) => (
-                <div className="item" key={item}>
-                  <span
-                    className={classNames('dot', {
-                      more:
-                        index > selectIndex + dotMore.current ||
-                        index < selectIndex - dotMore.current,
-                      active: selectIndex === index
-                    })}
-                  ></span>
-                </div>
-              ))}
-            </Indicator>
-          </div>
-          <Carousel dots={false} ref={sliderRef}>
-            {itemData?.picture_urls?.map((item: string) => (
-              <div className="room-item-cover" key={item}>
-                <img src={item} />
-              </div>
-            ))}
-          </Carousel>
-        </div>
+        {!itemData.picture_urls ? pictureElement : sliderElement}
         <div className="desc">
           {itemData?.verify_info?.kicker_badge && (
             <span className="tag">
