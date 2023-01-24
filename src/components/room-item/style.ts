@@ -62,10 +62,10 @@ export const RoomItemWrapper = styled.div<IRoomItemStyle>`
         background: linear-gradient(
           to left,
           transparent 0%,
-          rgba(0, 0, 0, 0.25) 100%
+          rgba(0, 0, 0, 0.15) 100%
         );
 
-        &.right {
+        &.next {
           background: linear-gradient(
             to right,
             transparent 0%,

@@ -1,7 +1,10 @@
-import React, { memo } from 'react'
+import React, { ElementRef, memo, useRef } from 'react'
 import type { FC, ReactNode } from 'react'
 import { Rating } from '@mui/material'
+import { Carousel } from 'antd'
 import { RoomItemWrapper } from '@/components/room-item/style'
+import IconArrowLeft from '@/assets/svg/icon-arrow-left'
+import IconArrowRight from '@/assets/svg/icon-arrow-right'
 
 interface IProps {
   children?: ReactNode
@@ -11,14 +14,33 @@ interface IProps {
 
 const RoomItem: FC<IProps> = (props) => {
   const { itemData, itemWidth = '25%' } = props
+  const sliderRef = useRef<ElementRef<typeof Carousel>>(null)
+  function controlClickHandle(isRight = true) {
+    isRight ? sliderRef.current!.next() : sliderRef.current!.prev()
+  }
+
   return (
     <RoomItemWrapper
       verifyColor={itemData?.verify_info?.text_color || '#39576a'}
       itemWidth={itemWidth}
     >
       <div className="inner">
-        <div className="room-item-cover">
-          <img src={itemData.picture_url} />
+        <div className="slider">
+          <div className="control">
+            <div className="btn prev" onClick={() => controlClickHandle(false)}>
+              <IconArrowLeft width={24} height={24} />
+            </div>
+            <div className="btn next" onClick={() => controlClickHandle()}>
+              <IconArrowRight width={24} height={24} />
+            </div>
+          </div>
+          <Carousel dots={false} ref={sliderRef}>
+            {itemData.picture_urls?.map((item: string) => (
+              <div className="room-item-cover" key={item}>
+                <img src={item} />
+              </div>
+            ))}
+          </Carousel>
         </div>
         <div className="desc">
           {itemData?.verify_info?.kicker_badge && (
