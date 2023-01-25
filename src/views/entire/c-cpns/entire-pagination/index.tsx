@@ -27,9 +27,9 @@ const EntirePagination: FC<IProps> = () => {
     event: React.ChangeEvent<unknown>,
     pageCount: number
   ) => {
-    // 回到顶部
+    /** 回到顶部 */
     window.scrollTo(0, 0)
-    // 请求数据并更新页码
+    /** 请求数据并更新页码 */
     dispatch(fetchRoomListAction(pageCount - 1))
   }
 

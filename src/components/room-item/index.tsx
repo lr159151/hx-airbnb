@@ -23,14 +23,14 @@ const RoomItem: FC<IProps> = (props) => {
 
   function controlClickHandle(isRight = true) {
     isRight ? sliderRef.current!.next() : sliderRef.current!.prev()
-    // 更新dot的索引
+    /** 更新dot的索引 */
     let newIndex = isRight ? selectIndex + 1 : selectIndex - 1
     const length = itemData.picture_urls.length
     if (newIndex > length - 1) newIndex = 0
     if (newIndex < 0) newIndex = length - 1
     setSelectIndex(newIndex)
 
-    // 改变dot的显示
+    /** 改变dot的显示 */
     if (isRight && selectIndex === 2) {
       setContentWidth(14.29)
     } else if (!isRight && selectIndex === 3) {
