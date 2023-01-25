@@ -12,16 +12,19 @@ interface IProps {
   children?: ReactNode
   itemData: any
   itemWidth?: string
+  itemClick?: (item: any) => void
 }
 
 const RoomItem: FC<IProps> = (props) => {
-  const { itemData, itemWidth = '25%' } = props
+  const { itemData, itemWidth = '25%', itemClick } = props
   const [selectIndex, setSelectIndex] = useState(0)
   const [contentWidth, setContentWidth] = useState(16.67)
   const sliderRef = useRef<ElementRef<typeof Carousel>>(null)
   const dotMore = useRef(4)
+  let isNavDetail = true
 
   function controlClickHandle(isRight = true) {
+    isNavDetail = false
     isRight ? sliderRef.current!.next() : sliderRef.current!.prev()
     /** 更新dot的索引 */
     let newIndex = isRight ? selectIndex + 1 : selectIndex - 1
@@ -61,6 +64,10 @@ const RoomItem: FC<IProps> = (props) => {
     ) {
       dotMore.current = 4
     }
+  }
+
+  function itemClickHandle() {
+    if (itemClick && isNavDetail) itemClick(itemData)
   }
 
   const pictureElement = (
@@ -110,6 +117,7 @@ const RoomItem: FC<IProps> = (props) => {
       verifyColor={itemData?.verify_info?.text_color || '#39576a'}
       contentWidth={contentWidth}
       itemWidth={itemWidth}
+      onClick={itemClickHandle}
     >
       <div className="inner">
         {!itemData.picture_urls ? pictureElement : sliderElement}
