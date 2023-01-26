@@ -9,7 +9,11 @@ interface IProps {
 
 const DetailInfos: FC<IProps> = (props) => {
   const { itemData } = props
-  return <InfosWrapper>DetailInfos</InfosWrapper>
+  return (
+    <InfosWrapper>
+      <div className="title">{itemData.name}</div>
+    </InfosWrapper>
+  )
 }
 
 export default memo(DetailInfos)

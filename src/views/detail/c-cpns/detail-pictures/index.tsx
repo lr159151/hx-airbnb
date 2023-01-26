@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useRef, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import { PicturesWrapper } from '@/views/detail/c-cpns/detail-pictures/style'
 import PictureBrowser from '@/base-ui/picture-browser'
@@ -11,6 +11,7 @@ interface IProps {
 const DetailPictures: FC<IProps> = (props) => {
   const { itemData } = props
   const [showBrowser, setShowBrowser] = useState(false)
+  const showBtnRef = useRef<HTMLButtonElement>(null)
   return (
     <PicturesWrapper>
       <div className="pictures">
@@ -33,9 +34,13 @@ const DetailPictures: FC<IProps> = (props) => {
           ))}
         </div>
       </div>
-      <div className="show-btn" onClick={() => setShowBrowser(true)}>
+      <button
+        className="show-btn"
+        onClick={() => setShowBrowser(true)}
+        ref={showBtnRef}
+      >
         显示照片
-      </div>
+      </button>
       {showBrowser && (
         <PictureBrowser
           pictureUrls={itemData.picture_urls}
