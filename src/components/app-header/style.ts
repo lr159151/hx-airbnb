@@ -20,10 +20,6 @@ export const AppHeaderWrapper = styled.div`
       align-items: center;
       height: 80px;
     }
-
-    .search-area {
-      height: 100px;
-    }
   }
 
   .cover {
@@ -35,4 +31,12 @@ export const AppHeaderWrapper = styled.div`
     z-index: 10;
     background-color: rgba(0, 0, 0, 0.3);
   }
+`
+
+type SearchAreaWrapperType = {
+  isSearch?: boolean
+}
+export const SearchAreaWrapper = styled.div<SearchAreaWrapperType>`
+  transition: height 250ms ease;
+  height: ${(props) => (props.isSearch ? '100px' : '0')};
 `

@@ -24,7 +24,7 @@ const SearchTabs: FC<IProps> = (props) => {
           <div
             className={classNames('item', { active: currentIndex === index })}
             key={item}
-            onClick={(e) => itemClickHandle(index)}
+            onClick={() => itemClickHandle(index)}
           >
             <span className="text">{item}</span>
             <span className="bottom"></span>
