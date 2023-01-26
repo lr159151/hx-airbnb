@@ -76,10 +76,31 @@ export const PicturesWrapper = styled.div`
     z-index: 99;
     right: 15px;
     bottom: 15px;
-    line-height: 22px;
+    min-width: 48px;
+    width: auto;
     padding: 6px 15px;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 22px;
     border-radius: 4px;
+    border: 1px solid transparent;
     background-color: #fff;
     cursor: pointer;
+
+    &:hover {
+      background: rgb(255, 255, 255);
+      border-color: transparent;
+      color: rgb(72, 72, 72);
+    }
+    &:focus {
+      box-shadow: rgb(0 0 0 / 50%) 0 0 0 1px, rgb(255 255 255 / 70%) 0 0 0 5px;
+      outline: none;
+      transition: box-shadow 0.2s ease 0s;
+    }
+    &:active {
+      background: rgb(226, 226, 226);
+      border-color: transparent;
+      color: rgb(72, 72, 72);
+    }
   }
 `
