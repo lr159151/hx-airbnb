@@ -1,9 +1,14 @@
 import React, { memo, useEffect, useState } from 'react'
 import type { FC, ReactNode } from 'react'
+import classNames from 'classnames'
+import { SwitchTransition, CSSTransition } from 'react-transition-group'
 import { BrowserWrapper } from '@/base-ui/picture-browser/style'
 import IconClose from '@/assets/svg/icon-close'
 import IconArrowLeft from '@/assets/svg/icon-arrow-left'
 import IconArrowRight from '@/assets/svg/icon-arrow-right'
+import IconTriangleArrowBottom from '@/assets/svg/icon-triangle-arrow-bottom'
+import Indicator from '@/base-ui/indicator'
+import IconTriangleArrowTop from '@/assets/svg/icon-triangle-arrow-top'
 
 interface IProps {
   children?: ReactNode
@@ -14,6 +19,7 @@ interface IProps {
 const PictureBrowser: FC<IProps> = (props) => {
   const { pictureUrls, closeClick } = props
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [showList, setShowList] = useState(true)
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     return () => {
@@ -30,7 +36,7 @@ const PictureBrowser: FC<IProps> = (props) => {
     setCurrentIndex(newIndex)
   }
   return (
-    <BrowserWrapper>
+    <BrowserWrapper showList={showList}>
       <div className="top">
         <div className="close-btn" onClick={closeBtnClickHandle}>
           <IconClose />
@@ -46,10 +52,52 @@ const PictureBrowser: FC<IProps> = (props) => {
           </div>
         </div>
         <div className="picture">
-          <img src={pictureUrls[currentIndex]} alt="" />
+          <SwitchTransition mode="out-in">
+            <CSSTransition
+              classNames="pic"
+              key={pictureUrls[currentIndex]}
+              timeout={150}
+            >
+              <img src={pictureUrls[currentIndex]} alt="" />
+            </CSSTransition>
+          </SwitchTransition>
         </div>
       </div>
-      <div className="preview"></div>
+      <div className="preview">
+        <div className="info">
+          <div className="desc">
+            <div className="count">
+              <span>
+                {currentIndex + 1}/{pictureUrls.length}
+              </span>
+              <span>room Apartment图片{currentIndex + 1}</span>
+            </div>
+            <div className="toggle" onClick={() => setShowList(!showList)}>
+              <span>{showList ? '隐藏' : '显示'}隐藏图片列表</span>
+              {showList ? (
+                <IconTriangleArrowBottom />
+              ) : (
+                <IconTriangleArrowTop />
+              )}
+            </div>
+          </div>
+          <div className="list">
+            <Indicator selectIndex={currentIndex}>
+              {pictureUrls.map((item, index) => (
+                <div
+                  className={classNames('item', {
+                    active: currentIndex === index
+                  })}
+                  onClick={() => setCurrentIndex(index)}
+                  key={item}
+                >
+                  <img src={item} alt="" />
+                </div>
+              ))}
+            </Indicator>
+          </div>
+        </div>
+      </div>
     </BrowserWrapper>
   )
 }

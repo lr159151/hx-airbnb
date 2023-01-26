@@ -4,11 +4,11 @@ import { IndicatorWrapper } from '@/base-ui/indicator/style'
 
 interface IProps {
   children?: ReactNode
-  selectIndex?: number
+  selectIndex: number
 }
 
 const Indicator: FC<IProps> = (props) => {
-  const { selectIndex = 0 } = props
+  const { selectIndex } = props
   const contentRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
     /** 获取selectIndex对应的item */

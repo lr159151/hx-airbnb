@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
 type BrowserType = {
-  isNext?: boolean
-  showList?: any[]
+  showList: boolean
 }
 
 export const BrowserWrapper = styled.div<BrowserType>`
@@ -74,14 +73,12 @@ export const BrowserWrapper = styled.div<BrowserType>`
 
       /* 动画的样式 */
       .pic-enter {
-        transform: translateX(${(props) => (props.isNext ? '100%' : '-100%')});
         opacity: 0;
       }
 
       .pic-enter-active {
-        transform: translate(0);
         opacity: 1;
-        transition: all 200ms ease;
+        transition: opacity 200ms ease;
       }
 
       .pic-exit {
@@ -90,7 +87,7 @@ export const BrowserWrapper = styled.div<BrowserType>`
 
       .pic-exit-active {
         opacity: 0;
-        transition: all 200ms ease;
+        transition: opacity 200ms ease;
       }
     }
   }
@@ -99,11 +96,11 @@ export const BrowserWrapper = styled.div<BrowserType>`
     display: flex;
     justify-content: center;
     height: 100px;
-    margin-top: 10px;
+    margin: 10px 0 86px 0;
 
     .info {
       position: absolute;
-      bottom: 10px;
+      bottom: 68px;
       max-width: 105vh;
       color: #fff;
 
@@ -123,7 +120,7 @@ export const BrowserWrapper = styled.div<BrowserType>`
         height: ${(props) => (props.showList ? '67px' : '0')};
 
         .item {
-          margin-right: 15px;
+          margin-right: 10px;
           cursor: pointer;
 
           img {
