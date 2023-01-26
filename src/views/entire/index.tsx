@@ -16,7 +16,7 @@ const Entire: FC<IProps> = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(fetchRoomListAction())
-    dispatch(changeHeaderConfigAction({ isFix: true }))
+    dispatch(changeHeaderConfigAction({ isFixed: true, topAlpha: false }))
   }, [dispatch])
   return (
     <EntireWrapper>

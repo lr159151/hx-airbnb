@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
-export const AppHeaderWrapper = styled.div`
-  border-bottom: 1px solid #eee;
-
+export const HeaderWrapper = styled.div`
   &.fixed {
     position: fixed;
     z-index: 99;
@@ -14,7 +12,24 @@ export const AppHeaderWrapper = styled.div`
   .content {
     position: relative;
     z-index: 19;
-    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    transition: all 250ms ease;
+    background-color: ${(props) =>
+      props.theme.isAlpha ? 'rgba(255,255,255,0)' : 'rgba(255,255,255,1)'};
+    border-bottom-color: ${(props) =>
+      props.theme.isAlpha ? 'rgba(238,238,238,0)' : 'rgba(238,238,238,1)'};
+
+    .top::before {
+      position: absolute;
+      z-index: -1;
+      content: '';
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(to bottom, #000, rgba(0, 0, 0, 0));
+      transition: 150ms opacity ease;
+      opacity: ${(props) => (props.theme.isAlpha ? '0.5' : '0')};
+    }
+
     .top {
       display: flex;
       align-items: center;

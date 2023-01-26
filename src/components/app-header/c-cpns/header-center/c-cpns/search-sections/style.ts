@@ -20,9 +20,10 @@ export const SectionsWrapper = styled.div`
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 0 30px;
+      padding: 0 24px;
 
       .title {
+        padding-bottom: 2px;
         font-size: 12px;
         font-weight: 800;
         color: #222;

@@ -13,7 +13,7 @@ interface IProps {
 const Detail: FC<IProps> = () => {
   const dispatch = useAppDispatch()
   useEffect(() => {
-    dispatch(changeHeaderConfigAction({ isFix: false }))
+    dispatch(changeHeaderConfigAction({ isFixed: false, topAlpha: false }))
   }, [dispatch])
   const { detailInfo } = useAppSelector(
     (state) => ({

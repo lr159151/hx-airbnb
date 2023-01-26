@@ -41,7 +41,7 @@ const Home: FC<IProps> = () => {
   const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(fetchHomeDataAction())
-    dispatch(changeHeaderConfigAction({ isFix: true }))
+    dispatch(changeHeaderConfigAction({ isFixed: true, topAlpha: true }))
   }, [dispatch])
 
   return (

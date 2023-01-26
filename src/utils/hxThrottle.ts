@@ -1,7 +1,7 @@
 export function hxthrottle(
   callbackFn: any,
   interval = 250,
-  { leading = true, trailing = false } = {}
+  { leading = true, trailing = true } = {}
 ) {
   let startTime = 0
   let timer: any = null

@@ -1,12 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 type InitialState = {
-  headerConfig: any
+  headerConfig: {
+    isFixed: boolean
+    topAlpha: boolean
+  }
 }
 
 const initialState: InitialState = {
   headerConfig: {
-    isFixed: false
+    isFixed: false,
+    topAlpha: false
   }
 }
 const mainSlice = createSlice({
