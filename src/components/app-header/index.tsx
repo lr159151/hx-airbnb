@@ -22,9 +22,15 @@ const AppHeader: FC<IProps> = () => {
   const { isFix } = headerConfig
   return (
     <AppHeaderWrapper className={classNames({ fixed: isFix })}>
-      <HeaderLeft />
-      <HeaderCenter />
-      <HeaderRight />
+      <div className="content">
+        <div className="top">
+          <HeaderLeft />
+          <HeaderCenter />
+          <HeaderRight />
+        </div>
+        <div className="search-area"></div>
+      </div>
+      <div className="cover"></div>
     </AppHeaderWrapper>
   )
 }

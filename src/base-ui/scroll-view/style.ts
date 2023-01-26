@@ -16,7 +16,7 @@ export const ScrollViewWrapper = styled.div`
     border: 2px solid transparent;
     background-color: #fff;
     box-shadow: rgb(0 0 0 / 14%) 0 1px 1px 1px;
-    z-index: 99;
+    z-index: 9;
 
     &:hover {
       background-color: #fff;
